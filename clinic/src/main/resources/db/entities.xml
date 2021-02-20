@@ -1,0 +1,41 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="Pawel" id="001">
+        <createTable tableName="doctor">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="surname" type="varchar(100)"/>
+            <column name="name" type="varchar(100)"/>
+            <column name="specialty" type="varchar(100)"/>
+            <column name="birth_date" type="date"/>
+            <column name="nip" type="varchar(15)"/>
+            <column name="pesel" type="varchar(11)"/>
+        </createTable>
+
+        <createTable tableName="patient">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="surname" type="varchar(100)"/>
+            <column name="name" type="varchar(100)"/>
+            <column name="birth_date" type="date"/>
+            <column name="pesel" type="varchar(11)"/>
+        </createTable>
+
+        <createTable tableName="appointment">
+            <column name="doctor_id" type="bigint">
+                <constraints foreignKeyName="appointment_doctor_fk" references="doctor(id)"/>
+            </column>
+            <column name="patient_id" type="bigint">
+                <constraints foreignKeyName="appointment_patient_fk" references="patient(id)"/>
+            </column>
+            <column name="date" type="date"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

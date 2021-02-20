@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="Pawel" id="002">
+        <loadData tableName="doctor" file="lekarze.csv" separator="\t" schemaName="public">
+            <column header="Id_lekarza" index="0" name="id" type="numeric"/>
+            <column header="Nazwisko" index="1" name="surname" type="string"/>
+            <column header="Imie" index="2" name="name" type="string"/>
+            <column header="Specjalnosc" index="3" name="specialty" type="string"/>
+            <column header="Data_urodzenia" index="4" name="birth_date" type="date"/>
+            <column header="nip" index="5" name="nip" type="string"/>
+            <column header="pesel" index="6" name="pesel" type="string"/>
+        </loadData>
+        <loadData tableName="patient" file="pacjenci.csv" separator="\t" schemaName="public">
+            <column header="Id_pacjenta" index="0" name="id" type="numeric"/>
+            <column header="Nazwisko" index="1" name="surname" type="string"/>
+            <column header="Imie" index="2" name="name" type="string"/>
+            <column header="pesel" index="3" name="pesel" type="string"/>
+            <column header="Data_urodzenia" index="4" name="birth_date" type="string"/>
+        </loadData>
+        <loadData tableName="appointment" file="wizyty.csv" separator="\t" schemaName="public">
+            <column header="Id_lekarza" index="0" name="doctor_id" type="numeric"/>
+            <column header="Id_pacjenta" index="1" name="patient_id" type="numeric"/>
+            <column header="Data_wizyty" index="2" name="date" type="string"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>
